@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hp.project.RegisterActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+            <!-- Registration Form -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dip">
+                <TextView
+                    android:id="@+id/register_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="REGISTER"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="#000000"
+                    android:textSize="30sp" />
+                <!-- Full Name Label -->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/full_name_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/full_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:hint="Full Name"/>
+                </android.support.design.widget.TextInputLayout>
+                <!--  Email Label -->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/email_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:hint="Email"/>
+                </android.support.design.widget.TextInputLayout>
+                <!-- Password Label -->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/password_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password">
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:hint="Password"/>
+                </android.support.design.widget.TextInputLayout>
+                <!-- Register Button -->
+                <Button android:id="@+id/btnRegister"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:text="Register New Account"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:background="#88dafa"/>
+                <!-- Link to Login Screen -->
+                <TextView android:id="@+id/link_to_login"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dip"
+                    android:layout_marginBottom="40dip"
+                    android:text="Already has account! Login here"
+                    android:gravity="center"
+                    android:textSize="20dip"
+                    android:textColor="#025f7c"/>
+
+            </LinearLayout>
+            <!-- Registration Form Ends -->
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hp.project.WorkOrderDetails"
+    android:padding="@dimen/activity_horizontal_margin">
+
+
+     <ScrollView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/work_order_details_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="WORK ORDER DETAILS"
+            android:layout_marginBottom="10dp"
+            android:textColor="#000000"
+            android:textSize="30sp" />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/rec_chan_no_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/rec_chan_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Receipt Challan No"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <EditText
+        android:id="@+id/rec_chan_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Receipt Challan Date"
+            android:layout_marginTop="4dp"/>
+
+        <EditText
+            android:id="@+id/start_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Starting Date"
+            android:layout_marginTop="4dp"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/supplier_name_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <EditText
+                android:id="@+id/suppiler_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Supplier Name"
+                android:inputType="text" />
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/customer_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <EditText
+                android:id="@+id/custom_name_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Customer Name"
+                android:inputType="text" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/Part_no_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <EditText
+                android:id="@+id/part_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Part Number"
+                android:inputType="number" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/Part_name_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <EditText
+                android:id="@+id/part_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Part Name"
+                android:inputType="text" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/HeatCode_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <EditText
+                android:id="@+id/heatCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Coil/Heat Code Number"
+                android:inputType="number" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/weightInKG_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <EditText
+                android:id="@+id/weight_in_kg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Weight in Kg"
+                android:inputType="numberDecimal" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <EditText
+            android:id="@+id/complete_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Completion Date"
+            android:inputType="text"
+            android:layout_marginTop="4dp"/>
+
+        <CheckBox
+            android:id="@+id/issued_Store_cb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Issued By Store SI"
+            android:textSize="20dp"
+            android:layout_marginTop="4dp"/>
+
+        <CheckBox
+            android:id="@+id/verified_QA_cb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Verified By QA SI"
+            android:textSize="20dp"
+            android:layout_marginTop="4dp"/>
+
+        <Button
+            android:id="@+id/next_btn"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NEXT"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:background="#88dafa"
+            />
+
+    </LinearLayout>
+     </ScrollView>
+</RelativeLayout>

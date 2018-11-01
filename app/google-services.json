@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "833024019438",
+    "firebase_url": "https://fastfind-b9277.firebaseio.com",
+    "project_id": "fastfind-b9277",
+    "storage_bucket": "fastfind-b9277.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:833024019438:android:fc83bd3a24111acb",
+        "android_client_info": {
+          "package_name": "com.example.hp.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "833024019438-4njl52tqs387gb1gst40j5q6i55q72lv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hp.project",
+            "certificate_hash": "934a9d0669b9449f9c80d79b1dd5e75e5856b702"
+          }
+        },
+        {
+          "client_id": "833024019438-9h12d5al47ip94v9iaqdnpimist23976.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUcjGdo8xZpTY99F6Ywz1KmtoNFvbCI2E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "833024019438-9h12d5al47ip94v9iaqdnpimist23976.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
