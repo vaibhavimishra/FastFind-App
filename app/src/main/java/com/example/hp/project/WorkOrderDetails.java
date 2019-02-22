@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,9 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.firebase.client.Firebase;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.Calendar;
 
@@ -38,10 +42,22 @@ public class WorkOrderDetails extends AppCompatActivity {
     private Button nextBtn;
 
 
+    private Firebase mRootRef;
+
+    private static String gameNameFinal = null;
+    private Uri filePath;
+
+    private EditText editTextEventName;
+    private EditText editTextEventDescription;
+
+    private DatabaseReference databaseReference;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_order_details);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         recChanNoC = (EditText) findViewById(R.id.rec_chan_no);
         recChanDateC = (EditText) findViewById(R.id.rec_chan_date);
@@ -103,9 +119,42 @@ public class WorkOrderDetails extends AppCompatActivity {
                 }
                 else {
 
+
+
+                    mRootRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+                    final Firebase databaseRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+
+                    Firebase childRef1 = databaseRef.child("SheetID "+recChanNoC.getText().toString());
+                    Firebase childRef = childRef1.child("WorkOrderDetails");
+
+                    childRef.child("Receipt Chan No").setValue(recChanNoC.getText().toString());
+                    childRef.child("Receipt Chan Date").setValue(recChanDateC.getText().toString());
+                    childRef.child("Start Date").setValue(startDateC.getText().toString());
+                    childRef.child("Supplier Name").setValue(supplierNameC.getText().toString());
+
+                    childRef.child("Customer Name").setValue(custNameC.getText().toString());
+                    childRef.child("Part No").setValue(partNoC.getText().toString());
+                    childRef.child("Part Name").setValue(partNameC.getText().toString());
+                    childRef.child("HeatCode").setValue(heatCodeC.getText().toString());
+
+                    childRef.child("Weight In kg").setValue(weightInKgC.getText().toString());
+                    childRef.child("Complete Date").setValue(completeDateC.getText().toString());
+                    childRef.child("Issued Store").setValue(issuedStore.isChecked());
+                    childRef.child("Verified By QA").setValue(verifiedQA.isChecked());
+
+
+                    Intent i = new Intent(getApplication(),RawMaterialDetails.class);
+
+                    i.putExtra("ID",recChanNoC.getText().toString());
+
                     Toast.makeText(WorkOrderDetails.this, "Next clicked", Toast.LENGTH_SHORT).show();
 
-                    startActivity(new Intent(getApplication(), RawMaterialDetails.class));
+                    startActivity(i);
+
                 }
             }
         });

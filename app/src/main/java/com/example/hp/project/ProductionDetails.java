@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.firebase.client.Firebase;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.Calendar;
 
@@ -32,6 +36,16 @@ public class ProductionDetails extends AppCompatActivity {
     private EditText preFormingRecieptNo;
     private EditText preFormingRemark;
     Button next3Btn;
+
+    private Firebase mRootRef;
+
+    private static String gameNameFinal = null;
+    private Uri filePath;
+
+    private EditText editTextEventName;
+    private EditText editTextEventDescription;
+
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +91,31 @@ public class ProductionDetails extends AppCompatActivity {
                     preFormingRejectedQty.requestFocus();
                 }
                 else {
+
+
+                    mRootRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+                    final Firebase databaseRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+
+                    Firebase childRef1 = databaseRef.child("SheetID "+preFormingMcNo.getText().toString());
+                    Firebase childRef = childRef1.child("Pre-Forming");
+
+                    childRef.child("Pre-Forming MC NO").setValue(preFormingMcNo.getText().toString());
+                    childRef.child("Pre-Forming Start").setValue(preFormingStart.getText().toString());
+                    childRef.child("Pre-Forming Complete").setValue(preFormingComplete.getText().toString());
+                    childRef.child("Pre-Forming Input Quantity").setValue(preFormingInputQty.getText().toString());
+
+                    childRef.child("Pre-Forming Accepted Quantity").setValue(preFormingAcceptedQty.getText().toString());
+                    childRef.child("Pre-Forming Rejected Quantity").setValue(preFormingRejectedQty.getText().toString());
+                    childRef.child("Pre-Forming Output Quantity").setValue(preFormingOutputQty.getText().toString());
+                    childRef.child("Pre-Forming Output").setValue(output.getText().toString());
+
+                    childRef.child("Pre-Forming Receipt No").setValue(preFormingRecieptNo.getText().toString());
+                    childRef.child("Pre-Forming Remark").setValue(preFormingRemark.getText().toString());
+
                     Toast.makeText(ProductionDetails.this, "Next clicked", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplication(), ProductionDetails1.class));
                 }

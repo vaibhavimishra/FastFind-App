@@ -1,6 +1,7 @@
 package com.example.hp.project;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.firebase.client.Firebase;
+import com.google.firebase.database.DatabaseReference;
 
 public class RawMaterialDetails extends AppCompatActivity {
     private static final String TAG = "RawMaterialDetails";
@@ -26,10 +30,25 @@ public class RawMaterialDetails extends AppCompatActivity {
     private TextView total;
     private Button next2Btn;
 
+    private Firebase mRootRef;
+
+    private static String gameNameFinal = null;
+    private Uri filePath;
+
+    private EditText editTextEventName;
+    private EditText editTextEventDescription;
+
+    private DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_raw_material_details);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
+
 
         rmSpecC = (EditText) findViewById(R.id.rm_spec);
         sheetSizeC = (EditText) findViewById(R.id.sheet_size);
@@ -80,6 +99,47 @@ public class RawMaterialDetails extends AppCompatActivity {
                     totalBlanksC.requestFocus();
                 }
                 else {
+
+
+                    mRootRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+                    final Firebase databaseRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+                    Intent i = getIntent();
+
+                    String Id = i.getStringExtra("ID");
+
+
+
+                    Firebase childRef1 = databaseRef.child("SheetID "+Id);
+                    Firebase childRef = childRef1.child("RawMaterialDetails");
+
+                    childRef.child("RM Specification-Grade").setValue(rmSpecC.getText().toString());
+                    childRef.child("Sheet Size-Coil").setValue(sheetSizeC.getText().toString());
+                    childRef.child("Number Of Sheets Used").setValue(numberSheetC.getText().toString());
+                    childRef.child("Strip Thickness").setValue(stripThicknessC.getText().toString());
+
+                    childRef.child("Stript Width").setValue(stripWidthC.getText().toString());
+                    childRef.child("Strip Length").setValue(stripLengthC.getText().toString());
+                    childRef.child("Strips Per Sheet").setValue(stripPerSheetC.getText().toString());
+                    childRef.child("Blanks Per Strip").setValue(blanksPerStripC.getText().toString());
+
+                    childRef.child("Blanks Per Sheet").setValue(blanksPerSheetC.getText().toString());
+                    childRef.child("Total Blanks").setValue(totalBlanksC.getText().toString());
+                    childRef.child("Total").setValue(total.getText().toString());
+
+
+
+
+
+
+
+
+
+
+
                     Toast.makeText(RawMaterialDetails.this, "Next clicked", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplication(), ProductionDetails.class));
                 }
