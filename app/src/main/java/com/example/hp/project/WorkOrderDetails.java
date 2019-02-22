@@ -44,6 +44,12 @@ public class WorkOrderDetails extends AppCompatActivity {
 
     private Firebase mRootRef;
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 03c90ccc591b72f56eecdb633d9f78e20fd90dfe
     private static String gameNameFinal = null;
     private Uri filePath;
 

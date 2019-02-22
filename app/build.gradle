@@ -26,6 +26,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     compile 'com.android.support:design:26.1.0'
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 03c90ccc591b72f56eecdb633d9f78e20fd90dfe
     //firebase
     compile 'com.firebase:firebase-client-android:2.4.0'
 //    compile 'com.android.support:appcompat-v7:22.2.0'

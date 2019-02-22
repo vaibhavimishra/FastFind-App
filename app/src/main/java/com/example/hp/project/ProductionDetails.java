@@ -37,8 +37,18 @@ public class ProductionDetails extends AppCompatActivity {
     private EditText preFormingRemark;
     Button next3Btn;
 
+<<<<<<< HEAD
     private Firebase mRootRef;
 
+=======
+
+
+    private Firebase mRootRef;
+
+
+
+
+>>>>>>> 03c90ccc591b72f56eecdb633d9f78e20fd90dfe
     private static String gameNameFinal = null;
     private Uri filePath;
 
@@ -116,6 +126,13 @@ public class ProductionDetails extends AppCompatActivity {
                     childRef.child("Pre-Forming Receipt No").setValue(preFormingRecieptNo.getText().toString());
                     childRef.child("Pre-Forming Remark").setValue(preFormingRemark.getText().toString());
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 03c90ccc591b72f56eecdb633d9f78e20fd90dfe
                     Toast.makeText(ProductionDetails.this, "Next clicked", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplication(), ProductionDetails1.class));
                 }

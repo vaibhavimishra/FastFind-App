@@ -30,8 +30,17 @@ public class RawMaterialDetails extends AppCompatActivity {
     private TextView total;
     private Button next2Btn;
 
+<<<<<<< HEAD
     private Firebase mRootRef;
 
+=======
+
+    private Firebase mRootRef;
+
+
+
+
+>>>>>>> 03c90ccc591b72f56eecdb633d9f78e20fd90dfe
     private static String gameNameFinal = null;
     private Uri filePath;
 
@@ -40,11 +49,21 @@ public class RawMaterialDetails extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 03c90ccc591b72f56eecdb633d9f78e20fd90dfe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_raw_material_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
+
 
 
 
