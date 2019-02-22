@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.firebase.client.Firebase;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.Calendar;
 
@@ -32,11 +36,25 @@ public class ProductionDetails1 extends AppCompatActivity {
     private EditText profilePiercingRemark;
     Button next4Btn;
 
+
+    private Firebase mRootRef;
+
+
+
+    private static String gameNameFinal = null;
+    private Uri filePath;
+
+    private EditText editTextEventName;
+    private EditText editTextEventDescription;
+
+    private DatabaseReference databaseReference;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_production_details1);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         profilePiercingMcNo = (EditText)findViewById(R.id.profile_piercing_machine_no);
         profilePiercingStart = (EditText)findViewById(R.id.profile_piercing_start_date);
@@ -76,8 +94,55 @@ public class ProductionDetails1 extends AppCompatActivity {
                     profilePiercingOutputQty.requestFocus();
                 }
                 else {
+
+
+
+                    mRootRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+                    final Firebase databaseRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+
+                    Intent i = getIntent();
+
+                    String Id = i.getStringExtra("ID");
+
+
+
+
+                    Firebase childRef1 = databaseRef.child("SheetID "+Id);
+                    Firebase childRef = childRef1.child("ProductionDetails");
+
+
+                    Firebase childRef2 = childRef.child("ProfilePiercing");
+
+
+
+
+
+                    childRef2.child("ProfilePiercingMcNo").setValue(profilePiercingMcNo.getText().toString());
+                    childRef2.child("ProfilePiercingStart").setValue(profilePiercingStart.getText().toString());
+                    childRef2.child("ProfilePiercingComplete").setValue(profilePiercingComplete.getText().toString());
+                    childRef2.child("ProfilePiercingInputQty").setValue(profilePiercingInputQty.getText().toString());
+                    childRef2.child("ProfilePiercingAcceptedQty").setValue(profilePiercingAcceptedQty.getText().toString());
+                    childRef2.child("ProfilePiercingRejectedQty").setValue(profilePiercingRejectedQty.getText().toString());
+                    childRef2.child("ProfilePiercingOutputQty").setValue(profilePiercingOutputQty.getText().toString());
+                    childRef2.child("ProfilePiercingoutput").setValue(profilePiercingoutput.getText().toString());
+                    childRef2.child("ProfilePiercingReceiptNo").setValue(profilePiercingRecieptNo.getText().toString());
+                    childRef2.child("ProfilePiercingRemark").setValue(profilePiercingRemark.getText().toString());
+
+
+
+                    Intent i1 = new Intent(getApplication(),ProductionDetails2.class);
+
+                    i1.putExtra("ID",Id);
+
+
+
+
                     Toast.makeText(ProductionDetails1.this, "Next clicked", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplication(), ProductionDetails2.class));
+                    startActivity(i1);
                 }
             }
         });

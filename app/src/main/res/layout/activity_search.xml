@@ -7,71 +7,71 @@
     tools:context="com.example.hp.project.SearchActivity"
     android:padding="@dimen/activity_horizontal_margin">
 
-            <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:orientation="vertical"
+        android:layout_marginTop="57dp">
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/usernameWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/textInput_invoice_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Invoice Number"
+                android:layout_marginTop="10dp"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/or_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:orientation="vertical"
-            android:layout_marginTop="57dp">
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="OR"
+            android:textColor="#333333"
+            android:textSize="30sp" />
 
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInput_heat_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/usernameWrapper"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/textInput_invoice_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter Invoice Number"
-                    android:layout_marginTop="10dp"/>
-            </android.support.design.widget.TextInputLayout>
-
-            <TextView
-                android:id="@+id/or_textview"
+            <EditText
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:text="OR"
-                android:textColor="#333333"
-                android:textSize="30sp" />
+                android:hint="Enter Heat Code"/>
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/textInput_heat_code"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp">
+        </android.support.design.widget.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter Heat Code"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <Button
-                android:id="@+id/button_search"
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Search"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:background="#88dafa"/>
+        <Button
+            android:id="@+id/button_search"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:background="#88dafa"/>
 
 
-        </LinearLayout>
+    </LinearLayout>
 
-        <!--<TextView-->
-            <!--android:id="@+id/textView_result"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:layout_marginBottom="76dp"-->
-            <!--android:text="Result" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/textView_result"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginBottom="76dp"-->
+    <!--android:text="Result" />-->
 
 </RelativeLayout>
 

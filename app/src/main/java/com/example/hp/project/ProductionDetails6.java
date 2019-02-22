@@ -1,21 +1,28 @@
 package com.example.hp.project;
 
-        import android.app.DatePickerDialog;
-        import android.content.Intent;
-        import android.graphics.Color;
-        import android.graphics.drawable.ColorDrawable;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.util.Log;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.DatePicker;
-        import android.widget.EditText;
-        import android.widget.TextView;
-        import android.widget.Toast;
-        import java.util.Calendar;
+import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.firebase.client.Firebase;
+import com.google.firebase.database.DatabaseReference;
+
+import java.util.Calendar;
 
 public class ProductionDetails6 extends AppCompatActivity {
+
+
     private static final String TAG = "ProductionDetails6";
     private DatePickerDialog.OnDateSetListener cDateSetListener;
     private DatePickerDialog.OnDateSetListener dDateSetListener;
@@ -30,6 +37,20 @@ public class ProductionDetails6 extends AppCompatActivity {
     private EditText embossRecieptNo;
     private EditText embossRemark;
     Button next9Btn;
+
+    private Firebase mRootRef;
+
+
+
+    private static String gameNameFinal = null;
+    private Uri filePath;
+
+    private EditText editTextEventName;
+    private EditText editTextEventDescription;
+
+    private DatabaseReference databaseReference;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +96,56 @@ public class ProductionDetails6 extends AppCompatActivity {
                     embossOutputQty.requestFocus();
                 }
                 else {
+
+
+
+
+
+                    mRootRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+                    final Firebase databaseRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+
+                    Intent i = getIntent();
+
+                    String Id = i.getStringExtra("ID");
+
+
+
+
+                    Firebase childRef1 = databaseRef.child("SheetID "+Id);
+                    Firebase childRef = childRef1.child("ProductionDetails");
+
+
+                    Firebase childRef2 = childRef.child("Emboss");
+
+
+
+
+                    childRef2.child("EmbossMcNo").setValue(embossMcNo.getText().toString());
+                    childRef2.child("EmbossStart").setValue(embossStart.getText().toString());
+                    childRef2.child("EmbossComplete").setValue(embossComplete.getText().toString());
+                    childRef2.child("EmbossInputQty").setValue(embossInputQty.getText().toString());
+                    childRef2.child("EmbossAcceptedQty").setValue(embossAcceptedQty.getText().toString());
+                    childRef2.child("EmbossRejectedQty").setValue(embossRejectedQty.getText().toString());
+                    childRef2.child("EmbossOutputQty").setValue(embossOutputQty.getText().toString());
+                    childRef2.child("Embossoutput").setValue(embossoutput.getText().toString());
+                    childRef2.child("EmbossReceiptNo").setValue(embossRecieptNo.getText().toString());
+                    childRef2.child("EmbossRemark").setValue(embossRemark.getText().toString());
+
+
+
+                    Intent i1 = new Intent(getApplication(),ProductionDetails7.class);
+
+                    i1.putExtra("ID",Id);
+
+
+
+
                     Toast.makeText(ProductionDetails6.this, "Next clicked", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplication(), ProductionDetails7.class));
+                    startActivity(i1);
                 }
             }
         });
