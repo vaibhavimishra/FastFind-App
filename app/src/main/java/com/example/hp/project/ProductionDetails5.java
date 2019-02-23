@@ -1,21 +1,28 @@
 package com.example.hp.project;
 
-        import android.app.DatePickerDialog;
-        import android.content.Intent;
-        import android.graphics.Color;
-        import android.graphics.drawable.ColorDrawable;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.util.Log;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.DatePicker;
-        import android.widget.EditText;
-        import android.widget.TextView;
-        import android.widget.Toast;
-        import java.util.Calendar;
+import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.firebase.client.Firebase;
+import com.google.firebase.database.DatabaseReference;
+
+import java.util.Calendar;
 
 public class ProductionDetails5 extends AppCompatActivity {
+
+
     private static final String TAG = "ProductionDetails5";
     private DatePickerDialog.OnDateSetListener cDateSetListener;
     private DatePickerDialog.OnDateSetListener dDateSetListener;
@@ -30,6 +37,21 @@ public class ProductionDetails5 extends AppCompatActivity {
     private EditText piercingRecieptNo;
     private EditText piercingRemark;
     Button next8Btn;
+
+    private Firebase mRootRef;
+
+
+
+    private static String gameNameFinal = null;
+    private Uri filePath;
+
+    private EditText editTextEventName;
+    private EditText editTextEventDescription;
+
+    private DatabaseReference databaseReference;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +97,59 @@ public class ProductionDetails5 extends AppCompatActivity {
                     piercingOutputQty.requestFocus();
                 }
                 else {
+
+
+
+
+
+
+
+                    mRootRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+                    final Firebase databaseRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+
+                    Intent i = getIntent();
+
+                    String Id = i.getStringExtra("ID");
+
+
+
+
+                    Firebase childRef1 = databaseRef.child("SheetID "+Id);
+                    Firebase childRef = childRef1.child("ProductionDetails");
+
+
+                    Firebase childRef2 = childRef.child("Piercing");
+
+
+
+
+                    childRef2.child("PiercingMcNo").setValue(piercingMcNo.getText().toString());
+                    childRef2.child("PiercingStart").setValue(piercingStart.getText().toString());
+                    childRef2.child("PiercingComplete").setValue(piercingComplete.getText().toString());
+                    childRef2.child("PiercingInputQty").setValue(piercingInputQty.getText().toString());
+                    childRef2.child("PiercingAcceptedQty").setValue(piercingAcceptedQty.getText().toString());
+                    childRef2.child("PiercingRejectedQty").setValue(piercingRejectedQty.getText().toString());
+                    childRef2.child("PiercingOutputQty").setValue(piercingOutputQty.getText().toString());
+                    childRef2.child("Piercingoutput").setValue(piercingoutput.getText().toString());
+                    childRef2.child("PiercingReceiptNo").setValue(piercingRecieptNo.getText().toString());
+                    childRef2.child("PiercingRemark").setValue(piercingRemark.getText().toString());
+
+
+
+                    Intent i1 = new Intent(getApplication(),ProductionDetails6.class);
+
+                    i1.putExtra("ID",Id);
+
+
+
+
                     Toast.makeText(ProductionDetails5.this, "Next clicked", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplication(), ProductionDetails6.class));
+                    startActivity(i1);
+
                 }
             }
         });

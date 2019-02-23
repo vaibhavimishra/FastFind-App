@@ -4,12 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.hp.project.Sheet_Card"
-    android:padding="@dimen/activity_horizontal_margin">
+    tools:context="com.example.hp.project.Sheet_Card">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +20,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="47dp"
             android:gravity="center"
-            android:text="CHECK SHEET ID"
+            android:text="CHOOSE SECTION"
             android:textColor="#333333"
             android:textSize="30sp" />
 
@@ -36,64 +32,54 @@
                 android:id="@+id/invoice11_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Receipt Challan Number"/>
+                android:inputType="date"
+                android:hint="Invoice No"/>
         </android.support.design.widget.TextInputLayout>
 
+
+
         <Button
-            android:id="@+id/button2"
-            android:layout_width="100dp"
+            android:id="@+id/work_order_details_bt"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#88dafa"
-            android:text="CHECK"
+            android:text="WORK ORDER DETAILS"
+            android:layout_marginTop="50dp"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"/>
+            android:background="#88dafa"/>
 
-        <!--<Button-->
-            <!--android:id="@+id/work_order_details_bt"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="WORK ORDER DETAILS"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--android:textSize="20dp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:background="#88dafa"/>-->
+        <Button
+            android:id="@+id/production_details_bt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PRODUCTION DETAILS"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:background="#88dafa"/>
 
-        <!--<Button-->
-            <!--android:id="@+id/production_details_bt"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="PRODUCTION DETAILS"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--android:textSize="20dp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:background="#88dafa"/>-->
+        <Button
+            android:id="@+id/dispatch_details_bt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DISPATCH DETAILS"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:background="#88dafa"/>
 
-        <!--<Button-->
-            <!--android:id="@+id/dispatch_details_bt"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="DISPATCH DETAILS"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--android:textSize="20dp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:background="#88dafa"/>-->
-
-        <!--<Button-->
-            <!--android:id="@+id/sheet_summary_bt"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="SHEET SUMMARY"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--android:textSize="20dp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:background="#88dafa"/>-->
-
+        <Button
+            android:id="@+id/sheet_summary_bt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SHEET SUMMARY"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:background="#88dafa"/>
 
 
     </LinearLayout>
-    </ScrollView>
 </RelativeLayout>
 
 

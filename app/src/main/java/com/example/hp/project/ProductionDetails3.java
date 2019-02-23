@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,9 +14,15 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.firebase.client.Firebase;
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.Calendar;
 
 public class ProductionDetails3 extends AppCompatActivity {
+
+
     private static final String TAG = "ProductionDetails3";
     private DatePickerDialog.OnDateSetListener cDateSetListener;
     private DatePickerDialog.OnDateSetListener dDateSetListener;
@@ -30,6 +37,21 @@ public class ProductionDetails3 extends AppCompatActivity {
     private EditText fullFormingRecieptNo;
     private EditText fullFormingRemark;
     Button next6Btn;
+
+
+    private Firebase mRootRef;
+
+
+
+    private static String gameNameFinal = null;
+    private Uri filePath;
+
+    private EditText editTextEventName;
+    private EditText editTextEventDescription;
+
+    private DatabaseReference databaseReference;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +97,57 @@ public class ProductionDetails3 extends AppCompatActivity {
                     fullFormingOutputQty.requestFocus();
                 }
                 else {
+
+
+
+
+
+                    mRootRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+                    final Firebase databaseRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+
+                    Intent i = getIntent();
+
+                    String Id = i.getStringExtra("ID");
+
+
+
+
+                    Firebase childRef1 = databaseRef.child("SheetID "+Id);
+                    Firebase childRef = childRef1.child("ProductionDetails");
+
+
+                    Firebase childRef2 = childRef.child("FullForming");
+
+
+
+
+                    childRef2.child("FullFormingMcNo").setValue(fullFormingMcNo.getText().toString());
+                    childRef2.child("FullFormingStart").setValue(fullFormingStart.getText().toString());
+                    childRef2.child("FullFormingComplete").setValue(fullFormingComplete.getText().toString());
+                    childRef2.child("FullFormingInputQty").setValue(fullFormingInputQty.getText().toString());
+                    childRef2.child("FullFormingAcceptedQty").setValue(fullFormingAcceptedQty.getText().toString());
+                    childRef2.child("FullFormingRejectedQty").setValue(fullFormingRejectedQty.getText().toString());
+                    childRef2.child("FullFormingOutputQty").setValue(fullFormingOutputQty.getText().toString());
+                    childRef2.child("FullFormingoutput").setValue(fullFormingoutput.getText().toString());
+                    childRef2.child("FullFormingReceiptNo").setValue(fullFormingRecieptNo.getText().toString());
+                    childRef2.child("FullFormingRemark").setValue(fullFormingRemark.getText().toString());
+
+
+
+                    Intent i1 = new Intent(getApplication(),ProductionDetails4.class);
+
+                    i1.putExtra("ID",Id);
+
+
+
+
                     Toast.makeText(ProductionDetails3.this, "Next clicked", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplication(), ProductionDetails4.class));
+                    startActivity(i1);
+
                 }
             }
         });

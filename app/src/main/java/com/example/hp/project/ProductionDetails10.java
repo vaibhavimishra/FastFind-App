@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.firebase.client.Firebase;
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.Calendar;
 
 public class ProductionDetails10 extends AppCompatActivity {
@@ -30,6 +35,21 @@ public class ProductionDetails10 extends AppCompatActivity {
     private EditText packingRecieptNo;
     private EditText packingRemark;
     Button next12Btn;
+
+
+    private Firebase mRootRef;
+
+
+
+    private static String gameNameFinal = null;
+    private Uri filePath;
+
+    private EditText editTextEventName;
+    private EditText editTextEventDescription;
+
+    private DatabaseReference databaseReference;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +95,53 @@ public class ProductionDetails10 extends AppCompatActivity {
                     packingOutputQty.requestFocus();
                 }
                 else {
+
+
+                    mRootRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+                    final Firebase databaseRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+
+                    Intent i = getIntent();
+
+                    String Id = i.getStringExtra("ID");
+
+
+
+
+                    Firebase childRef1 = databaseRef.child("SheetID "+Id);
+                    Firebase childRef = childRef1.child("ProductionDetails");
+
+
+                    Firebase childRef2 = childRef.child("Packing");
+
+
+
+
+                    childRef2.child("PackingMcNo").setValue(packingMcNo.getText().toString());
+                    childRef2.child("PackingStart").setValue(packingStart.getText().toString());
+                    childRef2.child("PackingComplete").setValue(packingComplete.getText().toString());
+                    childRef2.child("PackingInputQty").setValue(packingInputQty.getText().toString());
+                    childRef2.child("PackingAcceptedQty").setValue(packingAcceptedQty.getText().toString());
+                    childRef2.child("PackingRejectedQty").setValue(packingRejectedQty.getText().toString());
+                    childRef2.child("PackingOutputQty").setValue(packingOutputQty.getText().toString());
+                    childRef2.child("Packingoutput").setValue(packingoutput.getText().toString());
+                    childRef2.child("PackingReceiptNo").setValue(packingRecieptNo.getText().toString());
+                    childRef2.child("PackingRemark").setValue(packingRemark.getText().toString());
+
+
+
+                    Intent i1 = new Intent(getApplication(),DispatchDetails.class);
+
+                    i1.putExtra("ID",Id);
+
+
+
+
                     Toast.makeText(ProductionDetails10.this, "Next clicked", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplication(), DispatchDetails.class));
+                    startActivity(i1);
                 }
             }
         });

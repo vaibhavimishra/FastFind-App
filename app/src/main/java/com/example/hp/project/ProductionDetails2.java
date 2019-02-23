@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,9 +14,15 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.firebase.client.Firebase;
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.Calendar;
 
 public class ProductionDetails2 extends AppCompatActivity {
+
+
     private static final String TAG = "ProductionDetails2";
     private DatePickerDialog.OnDateSetListener cDateSetListener;
     private DatePickerDialog.OnDateSetListener dDateSetListener;
@@ -31,10 +38,28 @@ public class ProductionDetails2 extends AppCompatActivity {
     private EditText partingOffRemark;
     Button next5Btn;
 
+
+    private Firebase mRootRef;
+
+
+
+    private static String gameNameFinal = null;
+    private Uri filePath;
+
+    private EditText editTextEventName;
+    private EditText editTextEventDescription;
+
+    private DatabaseReference databaseReference;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_production_details2);
+
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         partingOffMcNo = (EditText)findViewById(R.id.parting_off_machine_no);
@@ -75,8 +100,55 @@ public class ProductionDetails2 extends AppCompatActivity {
                     partingOffOutputQty.requestFocus();
                 }
                 else {
+
+
+
+                    mRootRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+                    final Firebase databaseRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+
+                    Intent i = getIntent();
+
+                    String Id = i.getStringExtra("ID");
+
+
+
+
+                    Firebase childRef1 = databaseRef.child("SheetID "+Id);
+                    Firebase childRef = childRef1.child("ProductionDetails");
+
+
+                    Firebase childRef2 = childRef.child("PartingOff");
+
+
+
+
+                    childRef2.child("PartingOffMcNo").setValue(partingOffMcNo.getText().toString());
+                    childRef2.child("PartingOffStart").setValue(partingOffStart.getText().toString());
+                    childRef2.child("PartingOffComplete").setValue(partingOffComplete.getText().toString());
+                    childRef2.child("PartingOffInputQty").setValue(partingOffInputQty.getText().toString());
+                    childRef2.child("PartingOffAcceptedQty").setValue(partingOffAcceptedQty.getText().toString());
+                    childRef2.child("PartingOffRejectedQty").setValue(partingOffRejectedQty.getText().toString());
+                    childRef2.child("PartingOffOutputQty").setValue(partingOffOutputQty.getText().toString());
+                    childRef2.child("PartingOffoutput").setValue(partingOffoutput.getText().toString());
+                    childRef2.child("PartingOffReceiptNo").setValue(partingOffRecieptNo.getText().toString());
+                    childRef2.child("PartingOffRemark").setValue(partingOffRemark.getText().toString());
+
+
+
+                    Intent i1 = new Intent(getApplication(),ProductionDetails3.class);
+
+                    i1.putExtra("ID",Id);
+
+
+
+
                     Toast.makeText(ProductionDetails2.this, "Next clicked", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplication(), ProductionDetails3.class));
+                    startActivity(i1);
+
                 }
             }
         });

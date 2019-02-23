@@ -1,21 +1,28 @@
 package com.example.hp.project;
 
-        import android.app.DatePickerDialog;
-        import android.content.Intent;
-        import android.graphics.Color;
-        import android.graphics.drawable.ColorDrawable;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.util.Log;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.DatePicker;
-        import android.widget.EditText;
-        import android.widget.TextView;
-        import android.widget.Toast;
-        import java.util.Calendar;
+import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.firebase.client.Firebase;
+import com.google.firebase.database.DatabaseReference;
+
+import java.util.Calendar;
 
 public class ProductionDetails4 extends AppCompatActivity {
+
+
     private static final String TAG = "ProductionDetails4";
     private DatePickerDialog.OnDateSetListener cDateSetListener;
     private DatePickerDialog.OnDateSetListener dDateSetListener;
@@ -30,6 +37,20 @@ public class ProductionDetails4 extends AppCompatActivity {
     private EditText eadgeTrimingRecieptNo;
     private EditText eadgeTrimingRemark;
     Button next7Btn;
+
+    private Firebase mRootRef;
+
+
+
+    private static String gameNameFinal = null;
+    private Uri filePath;
+
+    private EditText editTextEventName;
+    private EditText editTextEventDescription;
+
+    private DatabaseReference databaseReference;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +96,60 @@ public class ProductionDetails4 extends AppCompatActivity {
                     eadgeTrimingOutputQty.requestFocus();
                 }
                 else {
+
+
+
+
+
+
+
+
+                    mRootRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+                    final Firebase databaseRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+
+                    Intent i = getIntent();
+
+                    String Id = i.getStringExtra("ID");
+
+
+
+
+                    Firebase childRef1 = databaseRef.child("SheetID "+Id);
+                    Firebase childRef = childRef1.child("ProductionDetails");
+
+
+                    Firebase childRef2 = childRef.child("EadgeTriming");
+
+
+
+
+                    childRef2.child("EadgeTrimingMcNo").setValue(eadgeTrimingMcNo.getText().toString());
+                    childRef2.child("EadgeTrimingStart").setValue(eadgeTrimingStart.getText().toString());
+                    childRef2.child("EadgeTrimingComplete").setValue(eadgeTrimingComplete.getText().toString());
+                    childRef2.child("EeadgeTrimingInputQty").setValue(eadgeTrimingInputQty.getText().toString());
+                    childRef2.child("EadgeTrimingAcceptedQty").setValue(eadgeTrimingAcceptedQty.getText().toString());
+                    childRef2.child("EadgeTrimingRejectedQty").setValue(eadgeTrimingRejectedQty.getText().toString());
+                    childRef2.child("EadgeTrimingOutputQty").setValue(eadgeTrimingOutputQty.getText().toString());
+                    childRef2.child("EadgeTrimingoutput").setValue(eadgeTrimingoutput.getText().toString());
+                    childRef2.child("EadgeTrimingReceiptNo").setValue(eadgeTrimingRecieptNo.getText().toString());
+                    childRef2.child("EadgeTrimingRemark").setValue(eadgeTrimingRemark.getText().toString());
+
+
+
+                    Intent i1 = new Intent(getApplication(),ProductionDetails5.class);
+
+                    i1.putExtra("ID",Id);
+
+
+
+
                     Toast.makeText(ProductionDetails4.this, "Next clicked", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplication(), ProductionDetails5.class));
+                    startActivity(i1);
+
                 }
             }
         });

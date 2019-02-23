@@ -30,17 +30,12 @@ public class RawMaterialDetails extends AppCompatActivity {
     private TextView total;
     private Button next2Btn;
 
-<<<<<<< HEAD
-    private Firebase mRootRef;
-
-=======
 
     private Firebase mRootRef;
 
 
 
 
->>>>>>> 03c90ccc591b72f56eecdb633d9f78e20fd90dfe
     private static String gameNameFinal = null;
     private Uri filePath;
 
@@ -49,21 +44,13 @@ public class RawMaterialDetails extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
 
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> 03c90ccc591b72f56eecdb633d9f78e20fd90dfe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_raw_material_details);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-
-
 
 
 
@@ -133,6 +120,7 @@ public class RawMaterialDetails extends AppCompatActivity {
 
 
                     Firebase childRef1 = databaseRef.child("SheetID "+Id);
+
                     Firebase childRef = childRef1.child("RawMaterialDetails");
 
                     childRef.child("RM Specification-Grade").setValue(rmSpecC.getText().toString());
@@ -153,6 +141,9 @@ public class RawMaterialDetails extends AppCompatActivity {
 
 
 
+                    Intent i1 = new Intent(getApplication(),ProductionDetails.class);
+
+                    i1.putExtra("ID",Id);
 
 
 
@@ -160,7 +151,7 @@ public class RawMaterialDetails extends AppCompatActivity {
 
 
                     Toast.makeText(RawMaterialDetails.this, "Next clicked", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplication(), ProductionDetails.class));
+                    startActivity(i1);
                 }
             }
         });

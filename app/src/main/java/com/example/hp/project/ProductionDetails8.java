@@ -1,21 +1,28 @@
 package com.example.hp.project;
 
-        import android.app.DatePickerDialog;
-        import android.content.Intent;
-        import android.graphics.Color;
-        import android.graphics.drawable.ColorDrawable;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.util.Log;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.DatePicker;
-        import android.widget.EditText;
-        import android.widget.TextView;
-        import android.widget.Toast;
-        import java.util.Calendar;
+import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.firebase.client.Firebase;
+import com.google.firebase.database.DatabaseReference;
+
+import java.util.Calendar;
 
 public class ProductionDetails8 extends AppCompatActivity {
+
+
     private static final String TAG = "ProductionDetails8";
     private DatePickerDialog.OnDateSetListener cDateSetListener;
     private DatePickerDialog.OnDateSetListener dDateSetListener;
@@ -30,6 +37,21 @@ public class ProductionDetails8 extends AppCompatActivity {
     private EditText deburringRecieptNo;
     private EditText deburringRemark;
     Button next11Btn;
+
+    private Firebase mRootRef;
+
+
+
+    private static String gameNameFinal = null;
+    private Uri filePath;
+
+    private EditText editTextEventName;
+    private EditText editTextEventDescription;
+
+    private DatabaseReference databaseReference;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +97,55 @@ public class ProductionDetails8 extends AppCompatActivity {
                     deburringOutputQty.requestFocus();
                 }
                 else {
+
+
+
+
+                    mRootRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+                    final Firebase databaseRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+
+                    Intent i = getIntent();
+
+                    String Id = i.getStringExtra("ID");
+
+
+
+
+                    Firebase childRef1 = databaseRef.child("SheetID "+Id);
+                    Firebase childRef = childRef1.child("ProductionDetails");
+
+
+                    Firebase childRef2 = childRef.child("Deburring");
+
+
+
+
+                    childRef2.child("DeburringMcNo").setValue(deburringMcNo.getText().toString());
+                    childRef2.child("DeburringStart").setValue(deburringStart.getText().toString());
+                    childRef2.child("DeburringComplete").setValue(deburringComplete.getText().toString());
+                    childRef2.child("DeburringInputQty").setValue(deburringInputQty.getText().toString());
+                    childRef2.child("DeburringAcceptedQty").setValue(deburringAcceptedQty.getText().toString());
+                    childRef2.child("DeburringRejectedQty").setValue(deburringRejectedQty.getText().toString());
+                    childRef2.child("DeburringOutputQty").setValue(deburringOutputQty.getText().toString());
+                    childRef2.child("Deburringoutput").setValue(deburringoutput.getText().toString());
+                    childRef2.child("DeburringReceiptNo").setValue(deburringRecieptNo.getText().toString());
+                    childRef2.child("DeburringRemark").setValue(deburringRemark.getText().toString());
+
+
+
+                    Intent i1 = new Intent(getApplication(),ProductionDetails9.class);
+
+                    i1.putExtra("ID",Id);
+
+
+
+
                     Toast.makeText(ProductionDetails8.this, "Next clicked", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplication(), ProductionDetails9.class));
+                    startActivity(i1);
                 }
             }
         });
@@ -145,6 +214,5 @@ public class ProductionDetails8 extends AppCompatActivity {
         });
     }
 }
-
 
 

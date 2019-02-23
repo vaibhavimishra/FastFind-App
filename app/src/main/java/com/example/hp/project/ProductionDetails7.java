@@ -1,21 +1,27 @@
 package com.example.hp.project;
 
-        import android.app.DatePickerDialog;
-        import android.content.Intent;
-        import android.graphics.Color;
-        import android.graphics.drawable.ColorDrawable;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.util.Log;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.DatePicker;
-        import android.widget.EditText;
-        import android.widget.TextView;
-        import android.widget.Toast;
-        import java.util.Calendar;
+import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.firebase.client.Firebase;
+import com.google.firebase.database.DatabaseReference;
+
+import java.util.Calendar;
 
 public class ProductionDetails7 extends AppCompatActivity {
+
     private static final String TAG = "ProductionDetails7";
     private DatePickerDialog.OnDateSetListener cDateSetListener;
     private DatePickerDialog.OnDateSetListener dDateSetListener;
@@ -30,6 +36,20 @@ public class ProductionDetails7 extends AppCompatActivity {
     private EditText chamferingRecieptNo;
     private EditText chamferingRemark;
     Button next10Btn;
+
+    private Firebase mRootRef;
+
+
+
+    private static String gameNameFinal = null;
+    private Uri filePath;
+
+    private EditText editTextEventName;
+    private EditText editTextEventDescription;
+
+    private DatabaseReference databaseReference;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +95,57 @@ public class ProductionDetails7 extends AppCompatActivity {
                     chamferingOutputQty.requestFocus();
                 }
                 else {
+
+
+
+
+
+
+                    mRootRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+                    final Firebase databaseRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
+
+
+
+                    Intent i = getIntent();
+
+                    String Id = i.getStringExtra("ID");
+
+
+
+
+                    Firebase childRef1 = databaseRef.child("SheetID "+Id);
+                    Firebase childRef = childRef1.child("ProductionDetails");
+
+
+                    Firebase childRef2 = childRef.child("Chamfering");
+
+
+
+
+                    childRef2.child("ChamferingMcNo").setValue(chamferingMcNo.getText().toString());
+                    childRef2.child("ChamferingStart").setValue(chamferingStart.getText().toString());
+                    childRef2.child("ChamferingComplete").setValue(chamferingComplete.getText().toString());
+                    childRef2.child("ChamferingInputQty").setValue(chamferingInputQty.getText().toString());
+                    childRef2.child("ChamferingAcceptedQty").setValue(chamferingAcceptedQty.getText().toString());
+                    childRef2.child("ChamferingRejectedQty").setValue(chamferingRejectedQty.getText().toString());
+                    childRef2.child("ChamferingOutputQty").setValue(chamferingOutputQty.getText().toString());
+                    childRef2.child("Chamferingoutput").setValue(chamferingoutput.getText().toString());
+                    childRef2.child("ChamferingReceiptNo").setValue(chamferingRecieptNo.getText().toString());
+                    childRef2.child("ChamferingRemark").setValue(chamferingRemark.getText().toString());
+
+
+
+                    Intent i1 = new Intent(getApplication(),ProductionDetails8.class);
+
+                    i1.putExtra("ID",Id);
+
+
+
+
                     Toast.makeText(ProductionDetails7.this, "Next clicked", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplication(), ProductionDetails8.class));
+                    startActivity(i1);
                 }
             }
         });
@@ -145,6 +214,3 @@ public class ProductionDetails7 extends AppCompatActivity {
         });
     }
 }
-
-
-
