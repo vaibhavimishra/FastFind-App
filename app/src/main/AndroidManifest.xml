@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hp.project">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 
     <application
         android:name=".FireApp"
@@ -19,11 +25,55 @@
             </intent-filter>
         </activity>
         <activity android:name=".ChooseActivity" />
-        <activity android:name=".WorkOrderDetails" />
-        <activity android:name=".RawMaterialDetails" />
-        <activity android:name=".ProductionDetails" />
+        <activity
+            android:name=".WorkOrderDetails"
+            android:parentActivityName=".ChooseActivity" />
+        <activity
+            android:name=".RawMaterialDetails"
+            android:parentActivityName=".WorkOrderDetails" />
+        <activity
+            android:name=".ProductionDetails"
+            android:parentActivityName=".RawMaterialDetails" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".ProductionDetails1"></activity>
+        <activity
+            android:name=".ProductionDetails1"
+            android:parentActivityName=".ProductionDetails" />
+        <activity android:name=".Sheet_Card" />
+        <activity
+            android:name=".DispatchDetails"
+            android:parentActivityName=".ProductionDetails10" />
+        <activity android:name=".SheetSummary" />
+        <activity
+            android:name=".ProductionDetails2"
+            android:parentActivityName=".ProductionDetails1" />
+        <activity
+            android:name=".ProductionDetails3"
+            android:parentActivityName=".ProductionDetails2" />
+        <activity
+            android:name=".ProductionDetails4"
+            android:parentActivityName=".ProductionDetails3" />
+        <activity
+            android:name=".ProductionDetails5"
+            android:parentActivityName=".ProductionDetails4" />
+        <activity
+            android:name=".ProductionDetails6"
+            android:parentActivityName=".ProductionDetails5" />
+        <activity
+            android:name=".ProductionDetails7"
+            android:parentActivityName=".ProductionDetails6" />
+        <activity
+            android:name=".ProductionDetails8"
+            android:parentActivityName=".ProductionDetails7" />
+        <activity
+            android:name=".ProductionDetails9"
+            android:parentActivityName=".ProductionDetails8" />
+        <activity
+            android:name=".ProductionDetails10"
+            android:parentActivityName=".ProductionDetails9" />
+        <activity
+            android:name=".SearchActivity"
+            android:parentActivityName=".ChooseActivity" />
+        <activity android:name=".Result"></activity>
     </application>
 
 </manifest>

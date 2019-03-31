@@ -20,13 +20,23 @@ public class ChooseActivity extends AppCompatActivity {
         Search = (Button) findViewById(R.id.search_bt);
         SheetEntry = (Button) findViewById(R.id.search_Entry);
         ViewReport = (Button) findViewById(R.id.View_Report);
-
+//
 //        Search.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                startActivity(Intent(getApplication(),Search.class));
+//                startActivity(new Intent(getApplication(),SearchActivity.class));
 //            }
 //        });
+
+
+        Search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplication(),SearchActivity.class));
+            }
+        });
+
+
         SheetEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

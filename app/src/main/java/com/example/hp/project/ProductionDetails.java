@@ -101,32 +101,51 @@ public class ProductionDetails extends AppCompatActivity {
                     mRootRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
 
 
+                    Intent i = getIntent();
+
+                    String Id = i.getStringExtra("ID");
+
                     final Firebase databaseRef = new Firebase("https://fastfind-289c3.firebaseio.com/"+"Sheets");
 
 
 
-                    Firebase childRef1 = databaseRef.child("SheetID "+preFormingMcNo.getText().toString());
-                    Firebase childRef = childRef1.child("Pre-Forming");
+                    Firebase childRef1 = databaseRef.child("SheetID "+Id);
+                    Firebase childRef = childRef1.child("ProductionDetails");
 
-                    childRef.child("Pre-Forming MC NO").setValue(preFormingMcNo.getText().toString());
-                    childRef.child("Pre-Forming Start").setValue(preFormingStart.getText().toString());
-                    childRef.child("Pre-Forming Complete").setValue(preFormingComplete.getText().toString());
-                    childRef.child("Pre-Forming Input Quantity").setValue(preFormingInputQty.getText().toString());
 
-                    childRef.child("Pre-Forming Accepted Quantity").setValue(preFormingAcceptedQty.getText().toString());
-                    childRef.child("Pre-Forming Rejected Quantity").setValue(preFormingRejectedQty.getText().toString());
-                    childRef.child("Pre-Forming Output Quantity").setValue(preFormingOutputQty.getText().toString());
-                    childRef.child("Pre-Forming Output").setValue(output.getText().toString());
+                    Firebase childRef2 = childRef.child("Pre-Forming");
 
-                    childRef.child("Pre-Forming Receipt No").setValue(preFormingRecieptNo.getText().toString());
-                    childRef.child("Pre-Forming Remark").setValue(preFormingRemark.getText().toString());
 
+
+
+
+                    childRef2.child("Pre-Forming MC NO").setValue(preFormingMcNo.getText().toString());
+                    childRef2.child("Pre-Forming Start").setValue(preFormingStart.getText().toString());
+                    childRef2.child("Pre-Forming Complete").setValue(preFormingComplete.getText().toString());
+                    childRef2.child("Pre-Forming Input Quantity").setValue(preFormingInputQty.getText().toString());
+
+                    childRef2.child("Pre-Forming Accepted Quantity").setValue(preFormingAcceptedQty.getText().toString());
+                    childRef2.child("Pre-Forming Rejected Quantity").setValue(preFormingRejectedQty.getText().toString());
+                    childRef2.child("Pre-Forming Output Quantity").setValue(preFormingOutputQty.getText().toString());
+                    childRef2.child("Pre-Forming Output").setValue(output.getText().toString());
+
+                    childRef2.child("Pre-Forming Receipt No").setValue(preFormingRecieptNo.getText().toString());
+                    childRef2.child("Pre-Forming Remark").setValue(preFormingRemark.getText().toString());
+
+
+                    Intent i1 = new Intent(getApplication(),ProductionDetails1.class);
+
+
+
+                    i1.putExtra("ID",Id);
 
 
 
 
                     Toast.makeText(ProductionDetails.this, "Next clicked", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplication(), ProductionDetails1.class));
+                    startActivity(i1);
+
+
                 }
             }
         });

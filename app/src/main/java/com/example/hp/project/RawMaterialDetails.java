@@ -51,10 +51,7 @@ public class RawMaterialDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_raw_material_details);
-
-
-
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         rmSpecC = (EditText) findViewById(R.id.rm_spec);
         sheetSizeC = (EditText) findViewById(R.id.sheet_size);
@@ -120,6 +117,7 @@ public class RawMaterialDetails extends AppCompatActivity {
 
 
                     Firebase childRef1 = databaseRef.child("SheetID "+Id);
+
                     Firebase childRef = childRef1.child("RawMaterialDetails");
 
                     childRef.child("RM Specification-Grade").setValue(rmSpecC.getText().toString());
@@ -140,6 +138,9 @@ public class RawMaterialDetails extends AppCompatActivity {
 
 
 
+                    Intent i1 = new Intent(getApplication(),ProductionDetails.class);
+
+                    i1.putExtra("ID",Id);
 
 
 
@@ -147,7 +148,7 @@ public class RawMaterialDetails extends AppCompatActivity {
 
 
                     Toast.makeText(RawMaterialDetails.this, "Next clicked", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplication(), ProductionDetails.class));
+                    startActivity(i1);
                 }
             }
         });

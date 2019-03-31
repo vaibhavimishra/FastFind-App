@@ -60,6 +60,7 @@ public class WorkOrderDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_order_details);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         recChanNoC = (EditText) findViewById(R.id.rec_chan_no);
         recChanDateC = (EditText) findViewById(R.id.rec_chan_date);
@@ -130,7 +131,7 @@ public class WorkOrderDetails extends AppCompatActivity {
 
 
 
-                    Firebase childRef1 = databaseRef.child("SheetID "+recChanNoC.getText().toString());
+                    Firebase childRef1 = databaseRef.child("SheetID "+heatCodeC.getText().toString());
                     Firebase childRef = childRef1.child("WorkOrderDetails");
 
                     childRef.child("Receipt Chan No").setValue(recChanNoC.getText().toString());
@@ -151,7 +152,7 @@ public class WorkOrderDetails extends AppCompatActivity {
 
                     Intent i = new Intent(getApplication(),RawMaterialDetails.class);
 
-                    i.putExtra("ID",recChanNoC.getText().toString());
+                    i.putExtra("ID",heatCodeC.getText().toString());
 
                     Toast.makeText(WorkOrderDetails.this, "Next clicked", Toast.LENGTH_SHORT).show();
 
