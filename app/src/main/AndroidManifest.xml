@@ -70,10 +70,15 @@
         <activity
             android:name=".ProductionDetails10"
             android:parentActivityName=".ProductionDetails9" />
+<<<<<<< HEAD
         <activity
             android:name=".SearchActivity"
             android:parentActivityName=".ChooseActivity" />
         <activity android:name=".Result"></activity>
+=======
+        <activity android:name=".SearchActivity"
+            android:parentActivityName=".ChooseActivity"/>
+>>>>>>> origin/master
     </application>
 
 </manifest>

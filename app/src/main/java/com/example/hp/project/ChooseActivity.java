@@ -40,7 +40,7 @@ public class ChooseActivity extends AppCompatActivity {
         SheetEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplication(),WorkOrderDetails.class));
+                startActivity(new Intent(getApplication(),Sheet_Card.class));
             }
         });
 //        Search.setOnClickListener(new View.OnClickListener() {
