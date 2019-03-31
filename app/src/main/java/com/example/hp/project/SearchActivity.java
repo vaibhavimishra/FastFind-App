@@ -1,6 +1,5 @@
 package com.example.hp.project;
 
-<<<<<<< HEAD
 import android.*;
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -86,18 +85,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     private String[] invoice_array = new String[14];
 
-=======
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
-public class SearchActivity extends AppCompatActivity {
->>>>>>> origin/master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-<<<<<<< HEAD
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         t1=(TextView)findViewById(R.id.i1);
@@ -2343,7 +2335,5 @@ public class SearchActivity extends AppCompatActivity {
 
         }
 
-=======
->>>>>>> origin/master
     }
 }
