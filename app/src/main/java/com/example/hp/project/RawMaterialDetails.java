@@ -51,10 +51,7 @@ public class RawMaterialDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_raw_material_details);
-
-
-
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         rmSpecC = (EditText) findViewById(R.id.rm_spec);
         sheetSizeC = (EditText) findViewById(R.id.sheet_size);

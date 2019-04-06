@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
     <application
         android:name=".FireApp"
         android:allowBackup="true"
@@ -65,8 +70,10 @@
         <activity
             android:name=".ProductionDetails10"
             android:parentActivityName=".ProductionDetails9" />
-        <activity android:name=".SearchActivity"
-            android:parentActivityName=".ChooseActivity"/>
+        <activity
+            android:name=".SearchActivity"
+            android:parentActivityName=".ChooseActivity" />
+        <activity android:name=".Result"></activity>
     </application>
 
 </manifest>

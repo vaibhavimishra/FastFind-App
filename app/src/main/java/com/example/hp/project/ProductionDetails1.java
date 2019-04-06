@@ -55,6 +55,7 @@ public class ProductionDetails1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_production_details1);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         profilePiercingMcNo = (EditText)findViewById(R.id.profile_piercing_machine_no);
         profilePiercingStart = (EditText)findViewById(R.id.profile_piercing_start_date);
